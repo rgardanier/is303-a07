@@ -1,0 +1,30 @@
+1. Dataset Description. What data did you collect? From where? How many records? What are the columns/fields?
+My data collected a books from the website that was provided. It collected 60 books (20books per page; 3 pages). It then was able to put these books into a database
+that then allowed me to do some analyses and find the most/least expensive books. I was also able to find the average price of all of them and then also group
+the average price according to the rating that the books were given. 
+
+2. Pipeline Description. Walk through each step of your pipeline: what does each function do? How do the pieces connect?
+My pipeline is a little complicated but will make sense when I explain it. The first function that is called is, scrape_books(3). 
+This goes to the function that goes through each page of the website that is found by using the fetch_url(url) function, and scrapes every book on that website. It uses the html to find 
+the title, price, and rating of each book. This is then stored as a dictionary and appended to a list of books. 
+I then made sure to have a timer so that i am not scraping the website a lot in a short amount of time. I then return this list of books that 
+was created and go to my next function: store(books). This function goes through each book in the list and strips the $ sign on the pricing. 
+html had the ratings weird so I made a dictionary of each rating and then found the numeric value of ratings instead of just the string by using RATING_WORDS dictionary.
+I then checked if the book already existed inside of the database. If it doesn't, I add the book to the database by using the class Book(Model). This then makes a database that is important and used 
+for analyses. During this whole process, I am counting how many new books there were added to the database and then I print that message out just so the user understands how many new books were added.
+after this I analyze the df and use this functtion to find the min/max and average values. 
+I then visualize this df and make a table of this dataframe.  
+
+3. Findings. What did your analysis reveal? Reference your groupby results and chart. What was surprising or interesting?
+I really liked the graph that was made. I thought it was interesting that on average, the highest rated books are not the most expensive books. I though that was really interesting and it could be because of the lack
+of 5 star reviewed books. I also just think it is so cool that we were able to parse through a website and extract information that can be analyzed. 
+
+4. Ethical Considerations. How did you ensure your data collection was ethical? Did you check robots.txt? Did you use rate limiting? Are there any concerns about the data you collected?
+To ensure my data collection was ethical, I used a timer so that it would not crash the server when i kept on parsing through the website to get data.
+I also made sure to choose the option on the homework assignment that you already told me was ethical. This was very nice and helped me feel safe as I parsed through the website. 
+
+5. Limitations. What are the limits of your analysis? What would you do differently with more time?
+I can only go through the first three pages of the website. I noticed on the website that there are fifty pages. I just went through the first three so that I could get accurage and informative information.
+I was thinking how hard and long it would take to actually go through all of the fifty pages. But i also know that doing so would provide way more accurate and gruanular data. And if for some reason
+their url changes, my program is not going to work and will have to need some adjustments so that the website works. My anayles only finds a few values, but it could find a lot more information about category of book,
+genre, and other metrics that could be cool and worth trying. 
